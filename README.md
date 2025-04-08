@@ -2,7 +2,7 @@
 
 > Fork of [JADX](https://github.com/skylot/jadx) with Model Context Protocol (MCP) integration for AI-powered static code analysis and real-time code review and reverse engineering tasks using Claude.
 
-![jadx-ai-banner](docs/assets/jadx-ai-banner.png) generated using AI tools.
+![jadx-ai-banner.png](img.png) generated using AI tools.
 
 ---
 
@@ -24,7 +24,7 @@ The following MCP tools are available:
 - `search_method_by_name(method_name)` — Search method across classes
 - `get_methods_of_class(class_name)` — List methods in a class
 - `get_fields_of_class(class_name)` — List fields in a class
-- `get_method_code(class_name, method_name)` — Alias for `get_method_by_name`
+- `get_method_code(class_name, method_name)` — Alias for `get_method_by_name` //to be removed
 - `get_smali_of_class(class_name)` — Fetch smali of class
 
 ---
@@ -83,19 +83,16 @@ The following MCP tools are available:
 
     "Can you identify the Android component type (Activity, Service, etc.)?"
 
-
-
-
 ## 🔥 Why a Fork Instead of a Plugin?
 
 While the plugin system in JADX is useful, it has limitations:
 
-| Feature                           | Plugin | Fork (jadx-ai) ✅ |
-|----------------------------------|--------|-------------------|
-| GUI manipulation                 | ❌     | ✅                |
-| Export live context to LLM       | ❌     | ✅                |
-| Auto-save project for analysis   | ❌     | ✅                |
-| Integrate MCP HTTP server inside | ❌     | ✅                |
+| Feature                                       | Plugin | Fork (jadx-ai) ✅ |
+|-----------------------------------------------|--------|-------------------|
+| GUI manipulation                              | ❌     | ✅                |
+| Export live GUI context to LLM                | ❌     | ✅                |
+| Auto-save project for analysis                | ❌     | ✅                |
+| Integrate MCP HTTP server inside JADX it self | ❌     | ✅                |
 
 This fork allows total control over the GUI and internal project model to support deeper LLM integration, including:
 
