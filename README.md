@@ -14,7 +14,7 @@
 
 Think: "Decompile → Context-Aware Code Review → AI Recommendations" — all in real time.
 
-[demo.mp4](demo.mp4)
+<video src="https://youtu.be/Od86IOkkaHg" controls width="500"></video>
 
 ## Current MCP Tools
 
