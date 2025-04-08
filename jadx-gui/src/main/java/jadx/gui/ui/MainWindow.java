@@ -67,6 +67,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import jadx.gui.plugins.MCPIntegrationPlugin;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.Theme;
 import org.jetbrains.annotations.NotNull;
@@ -260,6 +261,7 @@ public class MainWindow extends JFrame {
 		this.backgroundExecutor = new BackgroundExecutor(settings, progressPane);
 		this.treeExpansionService = new TreeExpansionService(this, tree);
 		initMenuAndToolbar();
+		new MCPIntegrationPlugin(this);
 		UiUtils.setWindowIcons(this);
 		this.shortcutsController.registerMouseEventListener(this);
 		loadSettings();
