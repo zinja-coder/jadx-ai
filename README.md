@@ -4,7 +4,7 @@
 
 > Fork of [JADX](https://github.com/skylot/jadx) with Model Context Protocol (MCP) integration for AI-powered static code analysis and real-time code review and reverse engineering tasks using Claude.
 
-![jadx-ai-banner.png](img.png) generated using AI tools.
+![jadx-ai-banner.png](docs/assets/img.png) generated using AI tools.
 
 ---
 
@@ -14,7 +14,13 @@
 
 Think: "Decompile → Context-Aware Code Review → AI Recommendations" — all in real time.
 
+Watch the demo!
+
 [![Watch the video](https://img.youtube.com/vi/Od86IOkkaHg/0.jpg)](https://www.youtube.com/watch?v=Od86IOkkaHg&autoplay=1)
+
+It is combination of two tools:
+1. JADX-AI
+2. [JADX MCP SERVER](https://github.com/zinja-coder/jadx-mcp-server)
 
 ## Current MCP Tools
 
@@ -86,24 +92,6 @@ The following MCP tools are available:
     "What package or app component does this class likely belong to?"
 
     "Can you identify the Android component type (Activity, Service, etc.)?"
-
-## 🔥 Why a Fork Instead of a Plugin?
-
-While the plugin system in JADX is useful, it has limitations:
-
-| Feature                                       | Plugin | Fork (jadx-ai) ✅ |
-|-----------------------------------------------|--------|-------------------|
-| GUI manipulation                              | ❌     | ✅                |
-| Export live GUI context to LLM                | ❌     | ✅                |
-| Auto-save project for analysis                | ❌     | ✅                |
-| Integrate MCP HTTP server inside JADX it self | ❌     | ✅                |
-
-This fork allows total control over the GUI and internal project model to support deeper LLM integration, including:
-
-- Exporting selected class to MCP
-- Running automated Claude analysis
-- Receiving back suggestions inline
-
 ---
 
 ## 📦 Features (v0.0.1-beta)
@@ -126,45 +114,127 @@ This is a **developer beta** — designed for reverse engineers, AI researchers,
 # 1. Unzip the jadx-ai-beta-v.0.0.1.zip
 unzip jadx-ai-<version>.zip
 
+jadx-mcp-server/
+├── jadx_mcp.py
+├── requirements.txt
+├── README.md
+├── LICENSE
+jadx-ai/
+├── bin/
+     ├──jadx
+     ├──jadx.bat
+     ├──jadx-gui
+     ├──jadx-gui.bat
+├── lib/
+     ├──jadx-v0.0.1-all.jar
+├── README.md
+├── LICENSE
+
 # 2. cd to jadx-ai directory
 cd jadx-ai-<version>
 
-# 3. Make it executable
+# 3. Make it executable (optional if not executable)
 sudo chmod +x ./bin/jadx-gui
 sudo chmod +x ./bin/jadx
 
 # 3. Execute the jadg-gui
 ./bin/jadx-gui
 
-# Report any error and issue at this repo
+# 4. Navigate to jadx_mcp_server directory
+cd jadx_mcp_server
+
+# 5. This project uses uv - https://github.com/astral-sh/uv instead of pip for dependency management.
+    ## a. Install uv (if you dont have it yet)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+    ## b. Set up the environment
+uv venv
+source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+    ## c. Install dependencies
+uv pip install httpx fastmcp
+
+# The setup for jadx-ai and jadx_mcp_server is done.
 ```
 
-### 2. Clone and Build
-
-```bash
-# 1. Clone this repo
-git clone https://github.com/zinja-coder/jadx-ai.git
-cd jadx-ai
-./gradlew dist
-
-# Output can be found at:
-
-jadx/build/jadx/bin/
-
-# 2. You can run it with:
-
-./jadx-gui
-```
-
-## 🤖 Claude Desktop Setup
+## 🤖 2. Claude Desktop Setup
 
 Make sure Claude Desktop is running with MCP enabled.
 
 For instance, I have used following for Kali Linux: https://github.com/aaddrick/claude-desktop-debian
 
+Configure and add MCP server to LLM file:
+```bash
+nano ~/.config/Claude/claude_desktop_config.json
+```
+And following content in it:
+```json
+{
+    "mcpServers": {
+        "jadx-mcp-server": {
+            "command": "/home/<YOUR_USERNAME/.local/bin/uv",
+            "args": [
+                "--directory",
+                "</PATH/TO/>jadx_mcp_server/",
+                "run",
+                "jadx_mcp.py"
+            ]
+        }
+    }
+}
+```
+
 Then, navigate code and interact via real-time code review prompts using the built-in integration.
 
-# 🧠 Future Roadmap
+## Give it a shot
+
+1. Run jadx-gui and load any .apk file
+
+![img_1.png](docs/assets/img_1.png)
+
+2. Start claude - You must see hammer symbol
+
+![img2.png](docs/assets/img2.png)
+
+3. Click on the `hammer` symbol and you should you see somthing like following:
+
+![img3.png](docs/assets/img3.png)
+
+4. Run following prompt:
+```text
+fetch currently selected class and perform quick sast on it
+```
+![img4.png](docs/assets/img4.png)
+
+5. Allow access when prompted:
+
+![img_1.png](docs/assets/img5.png)
+
+6. HACK!
+
+![img_2.png](docs/assets/img6.png)
+
+
+## 🔥 Why a Fork Instead of a Plugin?
+
+While the plugin system in JADX is useful, it has limitations:
+
+| Feature                                       | Plugin | Fork (jadx-ai) ✅ |
+|-----------------------------------------------|--------|-------------------|
+| GUI manipulation                              | ❌     | ✅                |
+| Export live GUI context to LLM                | ❌     | ✅                |
+| Auto-save project for analysis                | ❌     | ✅                |
+| Integrate MCP HTTP server inside JADX it self | ❌     | ✅                |
+
+I am planning to support real-time GUI access well that's why I used fork. (well that's a for future)
+
+This fork allows total control over the GUI and internal project model to support deeper LLM integration, including:
+
+- Exporting selected class to MCP
+- Running automated Claude analysis
+- Receiving back suggestions inline
+
+---
+
+## 🛣️ Future Roadmap
 
  - AI-assisted vulnerability scanning (auto-SAST)
 
@@ -176,7 +246,9 @@ Then, navigate code and interact via real-time code review prompts using the bui
 
  - Perform reverse engieering tasks using LLM
 
-# 🙏 Credits
+ - Make LLM be able to modify code on JADX
+
+## 🙏 Credits
 
 This project is a fork of the original JADX, an amazing open-source Android decompiler created and maintained by [@skylot](https://github.com/skylot). All core decompilation logic belongs to them. I have only extended it to support my MCP server with AI capabilities.
 
@@ -184,8 +256,26 @@ This project is a fork of the original JADX, an amazing open-source Android deco
 
 The original README.md from jadx is included here in this repository for reference and credit.
 
-# 🧪 License
+This MCP server is made possible by the extensibility of JADX-GUI and the amazing Android reverse engineering community.
+
+Also huge thanks to [@aaddrick](https://github.com/aaddrick) for developing Claude desktop for Debian based linux.
+
+## 📄 License
 
 This fork inherits the Apache 2.0 License from the original JADX repository.
+
+## ⚖️ Legal Warning
+
+**Disclaimer**
+
+The tools `jadx-ai` and `jadx_mcp_server` are intended strictly for educational, research, and ethical security assessment purposes. They are provided "as-is" without any warranties, expressed or implied. Users are solely responsible for ensuring that their use of these tools complies with all applicable laws, regulations, and ethical guidelines.
+
+By using `jadx-ai` or `jadx_mcp_server`, you agree to use them only in environments you are authorized to test, such as applications you own or have explicit permission to analyze. Any misuse of these tools for unauthorized reverse engineering, infringement of intellectual property rights, or malicious activity is strictly prohibited.
+
+The developers of `jadx-ai` and `jadx_mcp_server` shall not be held liable for any damage, data loss, legal consequences, or other consequences resulting from the use or misuse of these tools. Users assume full responsibility for their actions and any impact caused by their usage.
+
+Use responsibly. Respect intellectual property. Follow ethical hacking practices.
+
+---
 
 Built with ❤️ for the reverse engineering and AI communities.
