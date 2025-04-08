@@ -31,12 +31,9 @@ public class MCPHttpServer implements JadxPlugin {
 	private final MainWindow mainWindow;
 	private final Gson gson = new Gson();
 
-	private static final Path EXPORT_PATH = Paths.get("/tmp/jadx-export");
-
-
 	@Override
 	public void init(JadxPluginContext context) {
-		//context.getAppContext().getGuiContext().getMainFrame();
+
 
 		MainWindow mainWindow = (MainWindow) context.getGuiContext().getMainFrame(); //context.getAppContext().getGuiContext().getMainFrame();;//context.getMainWindow();
 		System.out.println("MCP HTTP Plugin: Starting HTTP server...");
@@ -49,13 +46,6 @@ public class MCPHttpServer implements JadxPlugin {
 	}
 
 	public void start() {
-		//if (this.mainWindow.getProject().isSaveFileSelected()) {
-		//	mainWindow.getProject().save();
-		//} else {
-	//		this.mainWindow.getProject().saveAs(EXPORT_PATH);
-			//this.mainWindow.saveProjectAs();
-	//	}
-
 
 		try {
 			HttpServer server = HttpServer.create(new InetSocketAddress(8650), 0);
@@ -364,11 +354,6 @@ public class MCPHttpServer implements JadxPlugin {
 		}
 	}
 
-	private Path findSourcesDir() {
-		Path sourcesDir = EXPORT_PATH.resolve("sources");
-		return Files.exists(sourcesDir) ? sourcesDir : null;
-	}
-
 	private Map<String, String> queryToMap(String query) {
 		Map<String, String> map = new HashMap<>();
 		if (query == null) return map;
@@ -381,23 +366,4 @@ public class MCPHttpServer implements JadxPlugin {
 		return map;
 	}
 
-	private String readJavaSourceFromDisk(String className) {
-		try {
-			Path sourcesDir = findSourcesDir();
-			if (sourcesDir == null) return null;
-			Path classPath = sourcesDir.resolve(className.replace('.', File.separatorChar) + ".java");
-			return Files.readString(classPath);
-		} catch (IOException e) {
-			return null;
-		}
-	}
-	
-
-	private int countChar(String str, char ch) {
-		int count = 0;
-		for (char c : str.toCharArray()) {
-			if (c == ch) count++;
-		}
-		return count;
-	}
 }
