@@ -1,5 +1,7 @@
 # JADX-AI (v0.0.1-beta)
 
+> It is a still in beta version, so expects bugs, crashes and logical erros.
+
 > Fork of [JADX](https://github.com/skylot/jadx) with Model Context Protocol (MCP) integration for AI-powered static code analysis and real-time code review and reverse engineering tasks using Claude.
 
 ![jadx-ai-banner.png](img.png) generated using AI tools.
@@ -11,6 +13,8 @@
 **JADX-AI** is a modified version of the [original JADX decompiler](https://github.com/skylot/jadx) that integrates directly with [Model Context Protocol (MCP)](https://github.com/anthropic/mcp) to provide **live reverse engineering support with LLMs like Claude**.
 
 Think: "Decompile → Context-Aware Code Review → AI Recommendations" — all in real time.
+
+[demo.mp4](demo.mp4)
 
 ## Current MCP Tools
 
