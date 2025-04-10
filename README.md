@@ -226,7 +226,7 @@ This plugin allows total control over the GUI and internal project model to supp
 
 ## NOTE For Contributors
 
- - The files related to JADX-AI can be found under `/jadx-ai/jadx-gui/src/main/java/jadx/gui/plugins/`
+ - The files related to JADX-AI can be found under this repo.
 
  - The files related to **jadx-mcp-server** can be found [here](https://github.com/zinja-coder/jadx-mcp-server).
 
