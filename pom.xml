@@ -27,7 +27,7 @@
             <groupId>io.github.skylot</groupId>
             <artifactId>jadx-gui</artifactId>
             <version>LOCAL</version>
-            <scope>provided</scope>
+            <scope>system</scope>
             <systemPath>${project.basedir}/lib/jadx-1.5.1-all.jar</systemPath>
         </dependency>
         <dependency>

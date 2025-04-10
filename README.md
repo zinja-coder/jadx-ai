@@ -1,8 +1,8 @@
 # JADX-AI
 
-> It is a still in beta version, so expects bugs, crashes and logical erros.
+> It is a still in early stage of development, so expects bugs, crashes and logical erros.
 
-> Fork of [JADX](https://github.com/skylot/jadx) with Model Context Protocol (MCP) integration for AI-powered static code analysis and real-time code review and reverse engineering tasks using Claude.
+> Standalone Plugin for JADX (Started as Fork) [JADX](https://github.com/skylot/jadx) with Model Context Protocol (MCP) integration for AI-powered static code analysis and real-time code review and reverse engineering tasks using Claude.
 
 ![jadx-ai-banner.png](docs/assets/img.png) Image generated using AI tools.
 
@@ -125,30 +125,19 @@ jadx-mcp-server/
 ├── README.md
 ├── LICENSE
 jadx-ai/
-├── bin/
-     ├──jadx
-     ├──jadx.bat
-     ├──jadx-gui
-     ├──jadx-gui.bat
-├── lib/
-     ├──jadx-v<version>-all.jar
-├── README.md
-├── LICENSE
+├── jadx-ai-plugin<version>.jar
 
-# 2. cd to jadx-ai directory
-cd jadx-ai-<version>
-
-# 3. Make it executable (optional if not executable)
-sudo chmod +x ./bin/jadx-gui
-sudo chmod +x ./bin/jadx
-
-# 3. Execute the jadg-gui
-./bin/jadx-gui
-
-# 4. Navigate to jadx_mcp_server directory
+# 2. Install the plugin
+```
+![img.png](docs/assets/img123.png)
+![img_1.png](docs/assets/img_12.png)
+![img_2.png](docs/assets/img_2.png)
+![img_3.png](docs/assets/img_3.png)
+```bash
+# 3. Navigate to jadx_mcp_server directory
 cd jadx_mcp_server
 
-# 5. This project uses uv - https://github.com/astral-sh/uv instead of pip for dependency management.
+# 4. This project uses uv - https://github.com/astral-sh/uv instead of pip for dependency management.
     ## a. Install uv (if you dont have it yet)
 curl -LsSf https://astral.sh/uv/install.sh | sh
     ## b. Set up the environment
@@ -217,21 +206,7 @@ fetch currently selected class and perform quick sast on it
 
 ![img_2.png](docs/assets/img6.png)
 
-
-## 🔥 Why a Fork Instead of a Plugin?
-
-While the plugin system in JADX is useful, it has limitations:
-
-| Feature                                       | Plugin | Fork (jadx-ai) ✅ |
-|-----------------------------------------------|--------|-------------------|
-| GUI manipulation                              | ❌     | ✅                |
-| Export live GUI context to LLM                | ❌     | ✅                |
-| Auto-save project for analysis                | ❌     | ✅                |
-| Integrate MCP HTTP server inside JADX it self | ❌     | ✅                |
-
-I am planning to support real-time GUI access well that's why I used fork. (well that's a for future)
-
-This fork allows total control over the GUI and internal project model to support deeper LLM integration, including:
+This plugin allows total control over the GUI and internal project model to support deeper LLM integration, including:
 
 - Exporting selected class to MCP
 - Running automated Claude analysis
@@ -257,7 +232,7 @@ This fork allows total control over the GUI and internal project model to suppor
 
 ## 🙏 Credits
 
-This project is a fork of the original JADX, an amazing open-source Android decompiler created and maintained by [@skylot](https://github.com/skylot). All core decompilation logic belongs to them. I have only extended it to support my MCP server with AI capabilities.
+This project is a plugin for JADX, an amazing open-source Android decompiler created and maintained by [@skylot](https://github.com/skylot). All core decompilation logic belongs to them. I have only extended it to support my MCP server with AI capabilities.
 
 [📎 Original README (JADX)](https://github.com/skylot/jadx)
 
@@ -269,7 +244,7 @@ Also huge thanks to [@aaddrick](https://github.com/aaddrick) for developing Clau
 
 ## 📄 License
 
-This fork inherits the Apache 2.0 License from the original JADX repository.
+This plugin inherits the Apache 2.0 License from the original JADX repository.
 
 ## ⚖️ Legal Warning
 
