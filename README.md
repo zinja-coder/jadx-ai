@@ -5,6 +5,7 @@
 ![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/zinja-coder/jadx-ai/latest/total)
 ![Latest release](https://img.shields.io/github/release/zinja-coder/jadx-ai.svg)
 ![Java 11+](https://img.shields.io/badge/Java-11%2B-blue)
+![Python 3.10+](https://img.shields.io/badge/python-3%2E10%2B-blue)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 > It is a still in early stage of development, so expects bugs, crashes and logical erros.
