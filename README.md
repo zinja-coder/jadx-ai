@@ -1,5 +1,12 @@
 # JADX-AI
 
+![GitHub contributors](https://img.shields.io/github/contributors/zinja-coder/jadx-ai)
+![GitHub all releases](https://img.shields.io/github/downloads/zinja-coder/jadx-ai/total)
+![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/zinja-coder/jadx-ai/latest/total)
+![Latest release](https://img.shields.io/github/release/zinja-coder/jadx-ai.svg)
+![Java 11+](https://img.shields.io/badge/Java-11%2B-blue)
+[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+
 > It is a still in early stage of development, so expects bugs, crashes and logical erros.
 
 > Standalone Plugin for [JADX](https://github.com/skylot/jadx) (Started as Fork) with Model Context Protocol (MCP) integration for AI-powered static code analysis and real-time code review and reverse engineering tasks using Claude.
